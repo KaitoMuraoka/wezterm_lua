@@ -16,8 +16,8 @@ A repository for managing [WezTerm](https://wezfurlong.org/wezterm/) configurati
 
 The configuration file includes retro-style fonts. You can switch between them by changing the argument of `config.font`.
 
-- `Glass TTY VT220` (currently in use)
-- `Print Char 21`
+- [`Glass TTY VT220`](https://caglrc.cc/glasstty/) (currently in use)
+- [`Print Char 21`](https://www.kreativekorp.com/software/fonts/apple2/)
 - `Nu Anko Mochi`
 
 ## Usage
