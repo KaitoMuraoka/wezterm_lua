@@ -4,7 +4,7 @@ A repository for managing [WezTerm](https://wezfurlong.org/wezterm/) configurati
 
 `.wezterm.lua` is the main configuration file for WezTerm.
 
-<img src="./screenshot.png" width=300>
+<img src="./screenshot.png" width=700>
 
 ## Configuration (`.wezterm.lua`)
 
