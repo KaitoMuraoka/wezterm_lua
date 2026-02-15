@@ -1,5 +1,5 @@
 -- Pull in the wezterm API
-local wezterm = require(wezterm)
+local wezterm = require("wezterm")
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
@@ -14,12 +14,11 @@ config.initial_rows = 24 -- default
 config.font_size = 17 -- default size
 
 -- retro fonts
-local VT220 = Glass TTY VT220
-local apple2 = Print Char 21
-local ankomochi = Nu Anko Mochi
+local VT220 = "Glass TTY VT220"
+local apple2 = "Print Char 21"
+local ankomochi = "Nu Anko Mochi"
 
 config.font = wezterm.font(VT220)
 
 -- Finally, return the configuration to wezterm:
 return config
-
