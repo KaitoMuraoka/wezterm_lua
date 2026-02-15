@@ -4,6 +4,8 @@ A repository for managing [WezTerm](https://wezfurlong.org/wezterm/) configurati
 
 `.wezterm.lua` is the main configuration file for WezTerm.
 
+<img src="./screenshot.png" width=300>
+
 ## Configuration (`.wezterm.lua`)
 
 - **Window size**: Initial size set to 80 columns x 24 rows
