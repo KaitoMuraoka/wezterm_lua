@@ -20,5 +20,9 @@ local ankomochi = "Nu Anko Mochi"
 
 config.font = wezterm.font(VT220)
 
+config.colors = {
+  foreground = "green",
+}
+
 -- Finally, return the configuration to wezterm:
 return config
