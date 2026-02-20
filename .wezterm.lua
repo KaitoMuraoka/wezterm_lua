@@ -21,27 +21,27 @@ local ankomochi = "Nu Anko Mochi"
 config.font = wezterm.font(VT220)
 
 config.colors = {
-  foreground = "#00ff00",
+  foreground = "green",
 
   ansi = {
-    "#0a2a0a", -- black
-    "#00ff66", -- red
+    "#003300", -- black
+    "#00cc00", -- red
     "#00ff00", -- green
-    "#88ff00", -- yellow
-    "#00aa66", -- blue
-    "#66ff99", -- magenta
-    "#00ffaa", -- cyan
-    "#ccffcc", -- white
+    "#00dd00", -- yellow
+    "#00bb00", -- blue
+    "#00ee00", -- magenta
+    "#00aa00", -- cyan
+    "#00ff00", -- white
   },
   brights = {
-    "#226622", -- bright black
-    "#33ff88", -- bright red
-    "#55ff55", -- bright green
-    "#aaff33", -- bright yellow
-    "#33cc88", -- bright blue
-    "#88ffbb", -- bright magenta
-    "#33ffdd", -- bright cyan
-    "#eeffee", -- bright white
+    "#005500", -- bright black
+    "#00dd00", -- bright red
+    "#00ff00", -- bright green
+    "#00ee00", -- bright yellow
+    "#00cc00", -- bright blue
+    "#00ff00", -- bright magenta
+    "#00bb00", -- bright cyan
+    "#00ff00", -- bright white
   },
 }
 
