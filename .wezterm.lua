@@ -13,37 +13,19 @@ config.initial_rows = 24 -- default
 -- or, changing the font size and color scheme.
 config.font_size = 17 -- default size
 
+-- 透明度
+config.window_background_opacity = 0.7
+
+-- ブラー
+config.macos_window_background_blur = 30
+
 -- retro fonts
 local VT220 = "Glass TTY VT220"
 local apple2 = "Print Char 21"
 local ankomochi = "Nu Anko Mochi"
 
-config.font = wezterm.font(VT220)
-
-config.colors = {
-  foreground = "green",
-
-  ansi = {
-    "#003300", -- black
-    "#00cc00", -- red
-    "#00ff00", -- green
-    "#00dd00", -- yellow
-    "#00bb00", -- blue
-    "#00ee00", -- magenta
-    "#00aa00", -- cyan
-    "#00ff00", -- white
-  },
-  brights = {
-    "#005500", -- bright black
-    "#00dd00", -- bright red
-    "#00ff00", -- bright green
-    "#00ee00", -- bright yellow
-    "#00cc00", -- bright blue
-    "#00ff00", -- bright magenta
-    "#00bb00", -- bright cyan
-    "#00ff00", -- bright white
-  },
-}
+--config.font = wezterm.font(VT220)
+config.font = wezterm.font(VT220, { weight = "Medium" })
 
 -- Finally, return the configuration to wezterm:
 return config
