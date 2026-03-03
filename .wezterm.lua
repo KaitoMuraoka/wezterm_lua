@@ -11,7 +11,7 @@ config.initial_cols = 80 -- default
 config.initial_rows = 24 -- default
 
 -- or, changing the font size and color scheme.
-config.font_size = 17 -- default size
+config.font_size = 13 -- default size
 
 -- 透明度
 config.window_background_opacity = 0.7
