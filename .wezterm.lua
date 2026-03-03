@@ -34,13 +34,8 @@ config.window_padding = {
 	bottom = 0,
 }
 
--- retro fonts
-local VT220 = "Glass TTY VT220"
-local apple2 = "Print Char 21"
-local ankomochi = "Nu Anko Mochi"
+config.font = wezterm.font("HackGen", { weight = "Medium" })
 
---config.font = wezterm.font(VT220)
-config.font = wezterm.font(VT220, { weight = "Medium" })
 
 -- Finally, return the configuration to wezterm:
 return config
