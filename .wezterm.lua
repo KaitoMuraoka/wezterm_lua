@@ -11,39 +11,33 @@ config.initial_cols = 80 -- default
 config.initial_rows = 24 -- default
 
 -- or, changing the font size and color scheme.
-config.font_size = 17 -- default size
+config.font_size = 13 -- default size
 
--- retro fonts
-local VT220 = "Glass TTY VT220"
-local apple2 = "Print Char 21"
-local ankomochi = "Nu Anko Mochi"
+-- 透明度
+config.window_background_opacity = 0.7
 
-config.font = wezterm.font(VT220)
+-- ブラー
+config.macos_window_background_blur = 30
 
-config.colors = {
-  foreground = "green",
+-- タイトルバーを非表示にする（枠ごと消す）
+config.window_decorations = "RESIZE|TITLE"
 
-  ansi = {
-    "#003300", -- black
-    "#00cc00", -- red
-    "#00ff00", -- green
-    "#00dd00", -- yellow
-    "#00bb00", -- blue
-    "#00ee00", -- magenta
-    "#00aa00", -- cyan
-    "#00ff00", -- white
-  },
-  brights = {
-    "#005500", -- bright black
-    "#00dd00", -- bright red
-    "#00ff00", -- bright green
-    "#00ee00", -- bright yellow
-    "#00cc00", -- bright blue
-    "#00ff00", -- bright magenta
-    "#00bb00", -- bright cyan
-    "#00ff00", -- bright white
-  },
+-- タブが1枚の時はタブバーを非表示
+-- 複数タブを開いた時は自動で表示される
+config.hide_tab_bar_if_only_one_tab = true
+
+-- 余白も透過に馴染ませる
+config.window_padding = {
+	left = 0,
+	right = 0,
+	top = 0,
+	bottom = 0,
 }
+
+config.font = wezterm.font("HackGen", { weight = "Medium" })
+
+config.send_composed_key_when_left_alt_is_pressed = false
+config.send_composed_key_when_right_alt_is_pressed = false
 
 -- Finally, return the configuration to wezterm:
 return config
