@@ -9,16 +9,14 @@ A repository for managing [WezTerm](https://wezfurlong.org/wezterm/) configurati
 ## Configuration (`.wezterm.lua`)
 
 - **Window size**: Initial size set to 80 columns x 24 rows
-- **Font size**: 17pt
-- **Font**: `Glass TTY VT220` (retro-style font)
-
-### Available Fonts
-
-The configuration file includes retro-style fonts. You can switch between them by changing the argument of `config.font`.
-
-- [`Glass TTY VT220`](https://caglrc.cc/glasstty/) (currently in use)
-- [`Print Char 21`](https://www.kreativekorp.com/software/fonts/apple2/)
-- `Nu Anko Mochi`
+- **Font**: `HackGen` (weight: Medium)
+- **Font size**: 13pt
+- **Background opacity**: 0.7 (translucent)
+- **Background blur**: 30 (macOS)
+- **Window decorations**: Title bar and resize controls (`RESIZE|TITLE`)
+- **Tab bar**: Hidden when only one tab is open
+- **Window padding**: None (0 on all sides)
+- **Option key**: Both left and right Alt keys act as Meta key (not as composed key)
 
 ## Usage
 
