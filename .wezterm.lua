@@ -34,6 +34,15 @@ config.window_padding = {
 	bottom = 0,
 }
 
+config.keys = {
+  -- Ctrl+h でバックスペースを送信
+  {
+    key = 'h',
+    mods = 'CTRL',
+    action = wezterm.action.SendKey { key = 'Backspace' },
+  },
+}
+
 config.font = wezterm.font("HackGen", { weight = "Medium" })
 
 config.send_composed_key_when_left_alt_is_pressed = false
