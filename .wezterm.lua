@@ -20,7 +20,7 @@ config.window_background_opacity = 0.7
 config.macos_window_background_blur = 30
 
 -- タイトルバーを非表示にする（枠ごと消す）
-config.window_decorations = "RESIZE|TITLE"
+config.window_decorations = "RESIZE"
 
 -- タブが1枚の時はタブバーを非表示
 -- 複数タブを開いた時は自動で表示される
