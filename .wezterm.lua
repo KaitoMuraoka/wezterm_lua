@@ -25,6 +25,9 @@ config.window_decorations = "RESIZE"
 -- タブが1枚の時はタブバーを非表示
 -- 複数タブを開いた時は自動で表示される
 config.hide_tab_bar_if_only_one_tab = true
+--  tab の＋を非表示
+config.show_new_tab_button_in_tab_bar = false
+
 
 -- 余白も透過に馴染ませる
 config.window_padding = {
@@ -34,6 +37,12 @@ config.window_padding = {
 	bottom = 0,
 }
 
+ config.colors = {
+   tab_bar = {
+     inactive_tab_edge = "none", -- タブ同士の境界線を非表示
+   },
+ }
+
 config.keys = {
   -- Ctrl+h でバックスペースを送信
   {
@@ -42,6 +51,26 @@ config.keys = {
     action = wezterm.action.SendKey { key = 'Backspace' },
   },
 }
+
+
+-- アクティブタブに色をつける
+ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+   local background = "#5c6d74"
+   local foreground = "#FFFFFF"
+
+   if tab.is_active then
+     background = "#ae8b2d"
+     foreground = "#FFFFFF"
+   end
+
+   local title = "   " .. wezterm.truncate_right(tab.active_pane.title, max_width - 1) .. "   "
+
+   return {
+     { Background = { Color = background } },
+     { Foreground = { Color = foreground } },
+     { Text = title },
+   }
+ end)
 
 config.font = wezterm.font("HackGen", { weight = "Medium" })
 
