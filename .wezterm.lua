@@ -89,6 +89,11 @@ config.keys = {
    }
  end)
 
+config.inactive_pane_hsb = {
+  saturation = 0.9,  -- 彩度（デフォルトは 0.9）
+  brightness = 0.3,  -- 輝度（デフォルトは 0.8）
+}
+
 config.font = wezterm.font("HackGen", { weight = "Medium" })
 
 config.send_composed_key_when_left_alt_is_pressed = false
