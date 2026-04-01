@@ -52,6 +52,21 @@ wezterm.on("tab-title-changed", function(tab, title)
   end
 end)
 
+-- スピナーアニメーション
+local spinner_frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+-- シェルプロセス（ビジーとみなさない）
+local shell_names = { zsh = true, bash = true, fish = true, sh = true }
+
+-- 100ms ごとにフレームを更新してタブバーを再描画
+config.status_update_interval = 100
+
+wezterm.on("update-right-status", function(window, pane)
+  local frame = (wezterm.GLOBAL.spinner_frame or 0) + 1
+  if frame > #spinner_frames then frame = 1 end
+  wezterm.GLOBAL.spinner_frame = frame
+  window:set_right_status("")
+end)
+
 config.keys = {
   -- Ctrl+h でバックスペースを送信
   {
@@ -104,8 +119,18 @@ config.keys = {
      foreground = "#FFFFFF"
    end
 
+   -- ビジー状態の判定（シェル以外のプロセスが動いているか）
+   local process = wezterm.basename(tab.active_pane.foreground_process_name or "")
+   local is_busy = process ~= "" and not shell_names[process]
+
+   local spinner = ""
+   if is_busy then
+     local frame = wezterm.GLOBAL.spinner_frame or 1
+     spinner = spinner_frames[frame] .. " "
+   end
+
    local pane_title = tab_titles[tab.tab_id] or tab.active_pane.title
-   local title = "   " .. wezterm.truncate_right(pane_title, max_width - 1) .. "   "
+   local title = "   " .. spinner .. wezterm.truncate_right(pane_title, max_width - 1) .. "   "
 
    return {
      { Background = { Color = background } },
