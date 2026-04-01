@@ -43,12 +43,36 @@ config.window_padding = {
    },
  }
 
+-- タブのカスタムタイトルを保持するテーブル
+local tab_titles = {}
+
+wezterm.on("tab-title-changed", function(tab, title)
+  if tab_titles[tab.tab_id] then
+    return tab_titles[tab.tab_id]
+  end
+end)
+
 config.keys = {
   -- Ctrl+h でバックスペースを送信
   {
     key = 'h',
     mods = 'CTRL',
     action = wezterm.action.SendKey { key = 'Backspace' },
+  },
+  -- タブ名を変更 (Ctrl+Shift+e)
+  {
+    key = 'e',
+    mods = 'CTRL|SHIFT',
+    action = wezterm.action.PromptInputLine {
+      description = 'タブ名を入力してください:',
+      action = wezterm.action_callback(function(window, pane, line)
+        if line then
+          local tab = window:active_tab()
+          tab_titles[tab:tab_id()] = line
+          tab:set_title(line)
+        end
+      end),
+    },
   },
   -- 左右に分割
   {
@@ -80,7 +104,8 @@ config.keys = {
      foreground = "#FFFFFF"
    end
 
-   local title = "   " .. wezterm.truncate_right(tab.active_pane.title, max_width - 1) .. "   "
+   local pane_title = tab_titles[tab.tab_id] or tab.active_pane.title
+   local title = "   " .. wezterm.truncate_right(pane_title, max_width - 1) .. "   "
 
    return {
      { Background = { Color = background } },
