@@ -43,12 +43,56 @@ config.window_padding = {
    },
  }
 
+-- タブのカスタムタイトルを保持するテーブル
+local tab_titles = {}
+
+wezterm.on("tab-title-changed", function(tab, title)
+  if tab_titles[tab.tab_id] then
+    return tab_titles[tab.tab_id]
+  end
+end)
+
+-- スピナーアニメーション
+local spinner_frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+-- シェルプロセス（ビジーとみなさない）
+local shell_names = { zsh = true, bash = true, fish = true, sh = true }
+
+-- 100ms ごとにフレームを更新してタブバーを再描画
+config.status_update_interval = 100
+
+wezterm.on("update-right-status", function(window, pane)
+  local frame = (wezterm.GLOBAL.spinner_frame or 0) + 1
+  if frame > #spinner_frames then frame = 1 end
+  wezterm.GLOBAL.spinner_frame = frame
+  window:set_right_status("")
+end)
+
 config.keys = {
   -- Ctrl+h でバックスペースを送信
   {
     key = 'h',
     mods = 'CTRL',
     action = wezterm.action.SendKey { key = 'Backspace' },
+  },
+  -- タブ名を変更 (Ctrl+Shift+e) ※日本語入力対応のためosascriptを使用
+  {
+    key = 'e',
+    mods = 'CTRL|SHIFT',
+    action = wezterm.action_callback(function(window, pane)
+      local success, stdout = wezterm.run_child_process({
+        'osascript',
+        '-e', 'set theResult to display dialog "タブ名を入力してください:" default answer "" with title "WezTerm"',
+        '-e', 'return text returned of theResult',
+      })
+      if success and stdout then
+        local line = stdout:gsub('\n', '')
+        if line ~= '' then
+          local tab = window:active_tab()
+          tab_titles[tab:tab_id()] = line
+          tab:set_title(line)
+        end
+      end
+    end),
   },
   -- 左右に分割
   {
@@ -80,7 +124,18 @@ config.keys = {
      foreground = "#FFFFFF"
    end
 
-   local title = "   " .. wezterm.truncate_right(tab.active_pane.title, max_width - 1) .. "   "
+   -- ビジー状態の判定（シェル以外のプロセスが動いているか）
+   local process = wezterm.basename(tab.active_pane.foreground_process_name or "")
+   local is_busy = process ~= "" and not shell_names[process]
+
+   local spinner = ""
+   if is_busy then
+     local frame = wezterm.GLOBAL.spinner_frame or 1
+     spinner = spinner_frames[frame] .. " "
+   end
+
+   local pane_title = tab_titles[tab.tab_id] or tab.active_pane.title
+   local title = "   " .. spinner .. wezterm.truncate_right(pane_title, max_width - 1) .. "   "
 
    return {
      { Background = { Color = background } },
