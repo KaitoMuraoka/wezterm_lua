@@ -74,20 +74,25 @@ config.keys = {
     mods = 'CTRL',
     action = wezterm.action.SendKey { key = 'Backspace' },
   },
-  -- タブ名を変更 (Ctrl+Shift+e)
+  -- タブ名を変更 (Ctrl+Shift+e) ※日本語入力対応のためosascriptを使用
   {
     key = 'e',
     mods = 'CTRL|SHIFT',
-    action = wezterm.action.PromptInputLine {
-      description = 'タブ名を入力してください:',
-      action = wezterm.action_callback(function(window, pane, line)
-        if line then
+    action = wezterm.action_callback(function(window, pane)
+      local success, stdout = wezterm.run_child_process({
+        'osascript',
+        '-e', 'set theResult to display dialog "タブ名を入力してください:" default answer "" with title "WezTerm"',
+        '-e', 'return text returned of theResult',
+      })
+      if success and stdout then
+        local line = stdout:gsub('\n', '')
+        if line ~= '' then
           local tab = window:active_tab()
           tab_titles[tab:tab_id()] = line
           tab:set_title(line)
         end
-      end),
-    },
+      end
+    end),
   },
   -- 左右に分割
   {
