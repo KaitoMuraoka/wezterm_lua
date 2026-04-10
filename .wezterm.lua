@@ -6,9 +6,19 @@ local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices.
 
--- For example, changing the initial geometry for new windows:
-config.initial_cols = 80 -- default
-config.initial_rows = 24 -- default
+-- 起動時のウィンドウサイズと位置を設定
+-- 画面中央、高さいっぱい、幅1/3
+wezterm.on('gui-startup', function(cmd)
+  local screen = wezterm.gui.screens().active
+  local width = math.floor(screen.width / 3)
+  local height = screen.height
+  local x = math.floor((screen.width - width) / 2)
+  local y = 0
+
+  local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+  window:gui_window():set_position(x, y)
+  window:gui_window():set_inner_size(width, height)
+end)
 
 -- or, changing the font size and color scheme.
 config.font_size = 13 -- default size
