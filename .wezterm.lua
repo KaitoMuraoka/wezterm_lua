@@ -78,6 +78,8 @@ wezterm.on("update-right-status", function(window, pane)
   window:set_right_status("")
 end)
 
+config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
+
 config.keys = {
   -- Ctrl+h でバックスペースを送信
   {
@@ -122,6 +124,9 @@ config.keys = {
   { key = 'l', mods = 'CTRL|SHIFT', action = wezterm.action.ActivatePaneDirection 'Right' },
   { key = 'k', mods = 'CTRL|SHIFT', action = wezterm.action.ActivatePaneDirection 'Up' },
   { key = 'j', mods = 'CTRL|SHIFT', action = wezterm.action.ActivatePaneDirection 'Down' },
+  -- LEADER + o で次のペインへ、LEADER + ; で前のペインへ
+  { key = 'o', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Next' },
+  { key = ';', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Prev' },
 }
 
 
