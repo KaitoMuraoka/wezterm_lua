@@ -24,7 +24,7 @@ end)
 config.font_size = 13 -- default size
 
 -- 透明度
-config.window_background_opacity = 0.7
+config.window_background_opacity = 1.0
 
 -- ブラー
 config.macos_window_background_blur = 30
