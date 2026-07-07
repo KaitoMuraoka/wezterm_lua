@@ -8,16 +8,16 @@ local config = wezterm.config_builder()
 
 -- 起動時のウィンドウサイズと位置を設定
 -- 画面中央、高さいっぱい、幅1/3
-wezterm.on('gui-startup', function(cmd)
-  local screen = wezterm.gui.screens().active
-  local width = math.floor(screen.width / 3)
-  local height = screen.height
-  local x = math.floor((screen.width - width) / 2)
-  local y = 0
+wezterm.on("gui-startup", function(cmd)
+	local screen = wezterm.gui.screens().active
+	local width = math.floor(screen.width / 2)
+	local height = screen.height
+	local x = math.floor((screen.width - width) / 2)
+	local y = 0
 
-  local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
-  window:gui_window():set_position(x, y)
-  window:gui_window():set_inner_size(width, height)
+	local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+	window:gui_window():set_position(x, y)
+	window:gui_window():set_inner_size(width, height)
 end)
 
 -- or, changing the font size and color scheme.
@@ -47,19 +47,19 @@ config.window_padding = {
 	bottom = 0,
 }
 
- config.colors = {
-   tab_bar = {
-     inactive_tab_edge = "none", -- タブ同士の境界線を非表示
-   },
- }
+config.colors = {
+	tab_bar = {
+		inactive_tab_edge = "none", -- タブ同士の境界線を非表示
+	},
+}
 
 -- タブのカスタムタイトルを保持するテーブル
 local tab_titles = {}
 
 wezterm.on("tab-title-changed", function(tab, title)
-  if tab_titles[tab.tab_id] then
-    return tab_titles[tab.tab_id]
-  end
+	if tab_titles[tab.tab_id] then
+		return tab_titles[tab.tab_id]
+	end
 end)
 
 -- スピナーアニメーション
