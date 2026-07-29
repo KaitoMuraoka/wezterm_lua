@@ -24,10 +24,13 @@ end)
 config.font_size = 13 -- default size
 
 -- 透明度
-config.window_background_opacity = 0.7
+config.window_background_opacity = 0.7 -- 透明度を高めるのであれば 0.7 が良い
+
+-- 文字部分の不透明度を上げてコントラストを改善
+config.text_background_opacity = 1.0
 
 -- ブラー
-config.macos_window_background_blur = 30
+config.macos_window_background_blur = 15
 
 -- タイトルバーを非表示にする（枠ごと消す）
 
