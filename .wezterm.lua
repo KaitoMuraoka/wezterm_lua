@@ -29,8 +29,21 @@ config.window_background_opacity = 0.7 -- 透明度を高めるのであれば 0
 -- 文字部分の不透明度を上げてコントラストを改善
 config.text_background_opacity = 1.0
 
--- ブラー
-config.macos_window_background_blur = 15
+-- macOSのコンピューター名を取得するコマンドを実行
+local handle = io.popen("scutil --get ComputerName")
+local result = handle:read("*a")
+handle:close()
+
+-- 前後の不要な改行コードを取り除く
+local computer_name = result:gsub("^%s*(.-)%s*$", "%1")
+
+if computer_name == "KaitoMuraokaのMacBook Air" then
+	-- ブラー
+	config.macos_window_background_blur = 5
+else
+	-- ブラー
+	config.macos_window_background_blur = 15
+end
 
 -- タイトルバーを非表示にする（枠ごと消す）
 
