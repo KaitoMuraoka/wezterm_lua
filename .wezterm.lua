@@ -22,9 +22,10 @@ end)
 
 -- or, changing the font size and color scheme.
 config.font_size = 13 -- default size
+config.color_scheme = "Builtin Tango Dark"
 
 -- 透明度
-config.window_background_opacity = 0.7 -- 透明度を高めるのであれば 0.7 が良い
+config.window_background_opacity = 1.0 -- 透明度を高めるのであれば 0.7 が良い
 
 -- 文字部分の不透明度を上げてコントラストを改善
 config.text_background_opacity = 1.0
