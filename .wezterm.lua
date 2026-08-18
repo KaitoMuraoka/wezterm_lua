@@ -86,12 +86,6 @@ end)
 config.macos_forward_to_ime_modifier_mask = "SHIFT|CTRL"
 
 config.keys = {
-	-- Ctrl+h でバックスペースを送信
-	{
-		key = "h",
-		mods = "CTRL",
-		action = wezterm.action.SendKey({ key = "Backspace" }),
-	},
 	-- タブ名を変更 (Ctrl+Shift+e) ※日本語入力対応のためosascriptを使用
 	{
 		key = "e",
