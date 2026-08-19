@@ -73,6 +73,9 @@ local shell_names = { zsh = true, bash = true, fish = true, sh = true }
 -- 100ms ごとにフレームを更新してタブバーを再描画
 config.status_update_interval = 100
 
+config.max_fps = 120
+config.animation_fps = 120
+
 wezterm.on("update-right-status", function(window, pane)
 	local frame = (wezterm.GLOBAL.spinner_frame or 0) + 1
 	if frame > #spinner_frames then
