@@ -160,7 +160,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	}
 end)
 
-config.font = wezterm.font("HackGen Console", { weight = "Medium" })
+config.font = wezterm.font("HackGen Console")
 
 config.send_composed_key_when_left_alt_is_pressed = false
 config.send_composed_key_when_right_alt_is_pressed = false
