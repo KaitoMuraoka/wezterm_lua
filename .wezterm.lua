@@ -21,6 +21,7 @@ wezterm.on("gui-startup", function(cmd)
 end)
 
 -- or, changing the font size and color scheme.
+config.color_scheme = "nord"
 config.font_size = 13 -- default size
 
 -- 透明度
