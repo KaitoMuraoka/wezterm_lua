@@ -7,10 +7,10 @@ local config = wezterm.config_builder()
 -- This is where you actually apply your config choices.
 
 -- 起動時のウィンドウサイズと位置を設定
--- 画面中央、高さいっぱい、幅1/3
+-- 画面中央、高さいっぱい、幅3/4
 wezterm.on("gui-startup", function(cmd)
 	local screen = wezterm.gui.screens().active
-	local width = math.floor(screen.width / 2)
+	local width = math.floor(screen.width * 3 / 4)
 	local height = screen.height
 	local x = math.floor((screen.width - width) / 2)
 	local y = 0
