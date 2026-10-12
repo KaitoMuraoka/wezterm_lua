@@ -161,7 +161,11 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	}
 end)
 
-config.font = wezterm.font("HackGen Console", { weight = "Bold" })
+config.font_dirs = { "/System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts" }
+config.font = wezterm.font_with_fallback({
+	{ family = "SF Mono", weight = "Bold" },
+	{ family = "Hiragino Sans", weight = "Bold" },
+})
 
 config.send_composed_key_when_left_alt_is_pressed = false
 config.send_composed_key_when_right_alt_is_pressed = false

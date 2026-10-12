@@ -9,7 +9,7 @@ A repository for managing [WezTerm](https://wezfurlong.org/wezterm/) configurati
 ## Configuration (`.wezterm.lua`)
 
 - **Window size**: Initial size set to 80 columns x 24 rows
-- **Font**: `HackGen` (weight: Medium)
+- **Font**: `SF Mono` + `Hiragino Sans` (weight: Bold)
 - **Font size**: 13pt
 - **Background opacity**: 0.7 (translucent)
 - **Background blur**: 30 (macOS)
